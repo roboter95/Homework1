@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.2)
 
+#project(helloworld VERSION 0.0.1)
+if(NOT DEFINED ENV{TRAVIS_BUILD_NUMBER})
+	set(ENV{TRAVIS_BUILD_NUMBER} 1)
+endif()
+
 project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+
+if (NOT DEFINED ENV{BOOST_ROOT} AND $ENV{COMPUTERNAME} STREQUAL "IZUBKOV")
+	set(BOOST_ROOT "C:\\Program Files\\boost\\boost_1_70_0")
+endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
