@@ -7,8 +7,10 @@ endif()
 
 project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
-if (NOT DEFINED ENV{BOOST_ROOT} AND $ENV{COMPUTERNAME} STREQUAL "IZUBKOV")
-	set(BOOST_ROOT "C:\\Program Files\\boost\\boost_1_70_0")
+if (DEFINED ENV{COMPUTERNAME})
+	if (NOT DEFINED ENV{BOOST_ROOT} AND $ENV{COMPUTERNAME} STREQUAL "IZUBKOV")
+		set(BOOST_ROOT "C:\\Program Files\\boost\\boost_1_70_0")
+	endif()
 endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
